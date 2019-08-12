@@ -4,6 +4,15 @@ Collection of programs I've written
 Summary of current programs:
 
 *********************************
+Uncorked - database driven web application
+*********************************
+Primary class: application.py and HTML files inside template subfolder
+
+This application runs off of a database of over 60,000 wines. Users can search for a wine to get information about the product as well rate and review the wine.
+
+This application was writted as part of a group project. The HTML, Javascript and CSS files were written solely by me, Kelly East. The application.py file and stored procedures were co-written between me and another group member.
+
+*********************************
 AVL balanced search tree
 *********************************
 Primary class: AVLTree.java
