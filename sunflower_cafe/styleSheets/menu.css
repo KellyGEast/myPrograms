@@ -1,0 +1,80 @@
+/* External Style Sheet for menu.html Page
+
+   Author: Kelly East
+   Date:   4/23/2019
+*/
+
+section#seasonalLatte {
+	background-color: LightGoldenRodYellow;
+	text-align:center;
+	font-family: 'Dancing Script', cursive;
+	margin: 0px;
+	padding: 2px;
+}
+
+section#seasonalLatte h2 {
+	font-family: 'Dancing Script', cursive;
+}
+
+nav {
+	margin-bottom: 0px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: LightGoldenRodYellow;
+}
+
+.col1 {
+	width: 85%;
+}
+
+table td, th {
+	padding: 8px;
+}
+
+table tr:nth-child(even){
+	background-color: floralwhite;
+}
+
+table th, .header {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: gold;
+  color: #432109;
+  font-size: 1.25em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.collapsible {
+	color: gold;
+	padding: .83em;
+	background-color: #432109;
+	text-align: center;
+	width: 100%;
+	font-size: 1.5em;
+	font-weight: bold;
+	font-family: 'Halant', serif;
+	outline: none;
+	border: none;
+	margin: 15px 0;
+}
+
+.content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+}
+
+.active, .collapsible:hover {
+	background-color: LightGoldenRodYellow;
+	color: #432109;
+	cursor: pointer;
+}
+
+h2 {
+	display: inline-block;
+}

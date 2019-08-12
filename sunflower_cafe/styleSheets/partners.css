@@ -1,0 +1,17 @@
+/* External Style Sheet for partners.html Page
+
+   Author: Kelly East
+   Date:   4/23/2019
+*/
+
+img {
+	height: 150px;
+	width: auto;
+	padding: 10px;
+	margin: auto;
+	display: block;
+}
+
+td {
+	width: 50%;
+}

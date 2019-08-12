@@ -1,0 +1,29 @@
+/* External Style Sheet for events.html Page
+
+   Author: Kelly East
+   Date:   4/23/2019
+*/
+
+h3 {
+	float: left;
+	background-color: #432109;
+	border-radius: 50%;
+	width: 2em;
+	height: 1.5em;
+	text-align: center;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+	margin: 0;
+}
+
+td {
+	padding: 5px;
+}
+
+main p {
+	font-size: 18px;
+}
+
+col {
+	width: 42px;
+}

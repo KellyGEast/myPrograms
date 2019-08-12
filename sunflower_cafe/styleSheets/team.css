@@ -1,0 +1,34 @@
+/* External Style Sheet for team.html Page
+
+   Author: Kelly East
+   Date:   4/23/2019
+*/
+
+img {
+	width: 100%;
+}
+
+h2 {
+	text-align:center;
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: #432109;
+}
+
+section#ourPartners {
+	width: 33%;
+	float: right;
+	margin-right: 10%;
+}
+
+section#ourStaff {
+	width: 33%;
+	float: left;
+	margin-left: 10%;
+}

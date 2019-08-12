@@ -1,0 +1,11 @@
+/* External Style Sheet for about.html Page
+
+   Author: Kelly East
+   Date:   4/24/2019
+*/
+
+img {
+	float: left;
+	width: 300px;
+	padding-right: 20px;
+}

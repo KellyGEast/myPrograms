@@ -1,0 +1,43 @@
+/* External Style Sheet for staff.html Page
+
+   Author: Kelly East
+   Date:   4/23/2019
+*/
+
+img {
+	border-radius: 50%;
+	width: 50%;
+	float: left;
+	margin-right: 20px;
+}
+
+td {
+	padding: 15px;
+	width: 50%;
+}
+
+[title] {
+	color: gold;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+.nameAndRole {
+	height: 125px;
+	margin: auto;
+}
+
+.twoLines h2 {
+	margin-bottom: 0px;
+}
+
+.twoLines h3 {
+	margin-top: 10px;
+}
+

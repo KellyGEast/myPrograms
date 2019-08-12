@@ -1,0 +1,183 @@
+/* Master external Style Sheet for all project04 html pages
+
+   Author: Kelly East
+   Date:   4/23/2019
+*/
+
+nav {
+	text-align: center;
+	margin: 0;
+	padding: 0 10px;
+	background-color: gold;
+}
+
+nav img {
+	height: 16px;
+	width: 16px;
+	margin: 0px;
+	float: none;
+	padding: 0px;
+	display: inline-block;
+}
+
+.home {
+	width: 50px;
+}
+
+nav a {
+	color: #432109;
+	font-weight: 600;
+	font-size: 16px;
+	display: inline-block;
+	width: 120px;
+	padding: 1em 0;
+	text-decoration: none;
+}
+
+nav a:hover {
+	background-color: LightGoldenRodYellow;
+	text-shadow: .2em .2em .2em #D0D0D0;
+}
+
+nav a:visited {
+	color: #432109;
+}
+
+body {
+	background-image: url("../images/sunflower2.jpg");
+	background-size: cover;
+	padding: 1em;
+}
+
+div#contentShell {
+	background-color: mediumaquamarine;
+	max-width: 80%;
+	margin: 0 auto;
+	border-right: 5px solid gold;
+	border-bottom: 5px solid gold;
+	border-left: 5px solid gold;
+	overflow: auto;
+	font-family: 'Nunito Sans', 'Helvetica', sans-serif;
+	color: #432109;
+}
+
+main {
+	padding: 0 40px 40px 40px;
+}
+
+h1 {
+	color: LightGoldenRodYellow;
+	text-align: center;
+	font-size: 2.5em;
+	font-family: 'Halant', 'Georgia', serif;
+}
+
+h2 {
+	color: #432109;
+	font-family: 'Halant', 'Georgia', serif;
+}
+
+h3 {
+	color: LightGoldenRodYellow;
+	font-family: 'Halant', serif;
+}
+
+a:hover, 
+input:hover[type="submit"], 
+input:hover[type="reset"]   {
+	text-shadow: .2em .2em .2em LightGoldenRodYellow;
+}
+
+img {
+	width: 100%;
+}
+
+table {
+	width: 100%;
+}
+
+form {
+	width: 75%;
+	margin: auto;
+	padding: 20px;
+	border: 2px solid #432109;
+	border-radius: 5px;
+	background-color: LightGoldenRodYellow;
+}
+
+textarea {
+		width: 100%;
+		height: 75px
+}
+
+fieldset {
+	background-color: floralwhite;
+}
+
+label {
+  width: 150px;
+  display: inline-block;
+}
+
+.shortlabel {
+  width: 50px;
+  display: inline-block;
+}
+
+.formButtons {
+	text-align: center;
+}
+
+.button {
+	background-color: gold;
+	border: none;
+	color: #432109;
+	padding: 15px 32px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+	border-radius: 5px;
+}
+
+.floatLeft {
+	float: left;
+}
+
+.floatRight {
+	float: Right;
+}
+
+footer {
+	padding: 0px 40px 10px 40px;
+	clear: both;
+	color: LightGoldenRodYellow;
+}
+
+p#copyright {
+	text-align: right;
+	float: right;
+	width: 50%;
+}
+
+p#todaysDate {
+	float: left;
+	width: 50%;
+}
+
+.footerNavButtons {
+	border-top: 2px solid LightGoldenRodYellow;
+	text-align: center;
+	padding: 20px 0 0 0;
+}
+
+footer a {
+	color: #432109;
+	font-weight: 600;
+	font-size: 16px;
+	display: inline-block;
+	width: 120px;
+	padding: 1em 0;
+	text-decoration: none;
+	border-radius: 5px;
+	background-color: gold;
+}
