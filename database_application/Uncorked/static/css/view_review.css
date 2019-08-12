@@ -1,0 +1,78 @@
+/* grid setup */
+
+#homepage_Header {
+  grid-area: header;
+  padding: 10px;
+}
+
+#buttons {
+  grid-area: buttons;
+}
+
+#homepage {
+  background-image: url("../images/vineyard.jpg");
+  background-size: cover;
+}
+
+#review_Container {
+  width: 850px;
+  height: 600px;
+  margin: auto 33% auto 15%;
+  background-color: rgba(255, 255, 224, 0.6);
+  border-radius: 50px;
+  display: grid;
+  grid:
+    "header" 1fr
+    "search" 1fr
+    "buttons" 1fr
+    / 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.rating-star {
+    direction: rtl;
+    font-size: 30px;
+    unicode-bidi: bidi-override;
+    display: inline-block;
+}
+.rating-star input {
+    opacity: 0;
+    position: relative;
+    left: -30px;
+    z-index: 2;
+    cursor: pointer;
+}
+.rating-star span.star:before {
+    color: #777777;
+}
+.rating-star span.star {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    position: relative;
+    z-index: 1;
+}
+.rating-star span {
+    margin-left: 2px;
+}
+.rating-star span.star:before {
+    color: #777777;
+    content:"\f006";
+}
+
+.rating-star span.checked-star:before {
+    color: #ffd100;
+    content:"\f005";
+}
+
+.checked-star {
+  color: #ffd100;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.red {
+  color: #800000;
+}

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" id="homepage">
+<head>
+    <meta charset="UTF-8">
+    <title>Search for a Wine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/search.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+<div id="search_container">
+
+<div id="search_box">
+  <header>
+    <h1 class="script">Search for a Wine</h1>
+  </header>
+
+  <form action=#>
+    <input type="text" name="search">
+    <button type="submit" id="search_button"><i class="fa fa-search"></i></button>
+  </form>
+
+  <br /><br />
+
+  <div id="pre_pop_search_buttons">
+    <a class="larger_button" id="top_wines">Top wines under $10</a>
+    <a class="larger_button" id="4_stars">Wines with 4+ Stars</a>
+    <a class="larger_button" id="top_by_location">Top 10 US wineries</a>
+  </div>
+</div>
+
+<div id="search_results">
+</div>
+
+</div>
+
+<script src=""{{ url_for('static',filename='javascript/function.js') }}"" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+// setup some JSON to use
+// in reality, this should work by sending data to and from python
+
+$(document).ready(function() {
+  // check if we've already been passed wine_data
+  var search_string = window.location.search;
+  if (search_string !== null && search_string !== undefined) {
+    var string_split = search_string.split("=");
+    if (string_split.length > 1){
+      var search_term = decodeURI(string_split[1]);
+      search_term = search_term.replace(/\+/g, " ");
+      search_term_sql = search_term.replace("'", "''");
+      var result_String = "No Results Found";
+
+      if (search_term_sql !== "#" && search_term_sql !== null && search_term_sql !== undefined){
+        var url = "/search_receiver/" + search_term_sql;
+        $.getJSON(url,function(data){
+          result_String = "";
+          for (i in data) {
+            result_String += "<a href=\"wine_profile?s=" + data[i].wid + "\">" + data[i].wname + " &bull; " + data[i].yname + "</a>";
+          }
+
+          if (result_String == ""){
+            result_String = "No Results Found";
+          }
+
+          document.getElementById("search_results").style.display = "block";
+          document.getElementById("search_results").innerHTML =
+          "<h2 class=\"script\">Search Results for \"" + search_term + "\"</h2><hr /><br />" + result_String;
+        });
+      }
+
+      else {
+        document.getElementById("search_results").style.display = "block";
+        document.getElementById("search_results").innerHTML =
+        "<h2 class=\"script\">Search Results for \"" + search_term + "\"</h2><hr /><br />" + result_String;
+      }
+    }
+  };
+});
+
+document.getElementById("top_wines").onclick = function() {
+  var url = "/search_receiver/top_wines";
+  $.getJSON(url,function(data){
+    var result_String = "";
+    for (i in data) {
+        result_String += "<a href=\"wine_profile?s=" + data[i].wid + "\">" + data[i].score + " points &bull; " + data[i].wname + " &bull; " + data[i].yname + " &bull; $" + data[i].price + "</a>";
+    }
+    document.getElementById("search_results").style.display = "block";
+    document.getElementById("search_results").innerHTML = "<h2 class=\"script\">Top 10 wines under $10</h2><hr /><br />" + result_String;
+  });
+}
+
+document.getElementById("4_stars").onclick = function() {
+  var url = "/search_receiver/4_stars";
+  $.getJSON(url,function(data){
+    var result_String = "";
+    for (i in data) {
+        result_String += "<a href=\"wine_profile?s=" + data[i].wid + "\">" + data[i].wname + " &bull; " + data[i].yname + " &bull; $" + data[i].price + "</a>";
+    }
+    document.getElementById("search_results").style.display = "block";
+    document.getElementById("search_results").innerHTML = "<h2 class=\"script\">Wines with average rating above 4 stars</h2><hr /><br />" + result_String;
+  });
+}
+
+document.getElementById("top_by_location").onclick = function() {
+  var url = "/search_receiver/top_by_location/US";
+  $.getJSON(url,function(data){
+    var result_String = "";
+    for (i in data) {
+        result_String += "<a href=\"winery_home?s=" + data[i].yname + "\">" + data[i].yname + " &bull; Average score: " + parseFloat(data[i].score).toFixed(1) + "</a>";
+    }
+    document.getElementById("search_results").style.display = "block";
+    document.getElementById("search_results").innerHTML = "<h2 class=\"script\">Top 10 US wineries</h2><hr /><br />" + result_String;
+  });
+}
+
+</script>
+</body>
+</html>

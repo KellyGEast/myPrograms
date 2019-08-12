@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" id="homepage">
+<head>
+    <meta charset="UTF-8">
+    <title>My Review</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/view_review.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+<div id="review_Container">
+
+<header id="homepage_Header">
+  <h1 id="wname"></h1>
+  <h3 id="info_string" class="center red"></h3>
+</header>
+
+  <div id="view_review_container">
+    <table>
+      <tr>
+        <td>Date:</td>
+        <td id="date" colspan="2"></td>
+      </tr>
+      <tr>
+        <td>Rating:</td>
+        <td colspan="2">
+          <span class="rating-star" id="star_box"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>Comments:</td>
+        <td id="comment" colspan="2"></td>
+      </tr>
+      <tr>
+        <td>Favorite list:</td>
+        <td id="favorite" colspan="2"></td>
+      </tr>
+    </table>
+  </div>
+  <span id="buttons">
+    <a href="user_home" class="button">Back to User Home</a>
+  </span>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    var username = sessionStorage.getItem("username");
+    var wine_string = window.location.search;
+    var wine_string_split = wine_string.split("=");
+    var wine_id = wine_string_split[1];
+    var url = "/view_review_receiver/" + username + "/" + wine_id;
+    $.getJSON(url,function(data){
+      var wname = data[0].wname;
+      var rating = data[0].star;
+      var comment = data[0].comment;
+      var favorite = data[0].favorite;
+      var date = data[0].date;
+      var yname = data[0].yname;
+      var vname = data[0].vname;
+      var score = data[0].score;
+      var price = data[0].price;
+      document.getElementById("wname").innerHTML = wname;
+      document.getElementById("comment").innerHTML = comment;
+      document.getElementById("favorite").innerHTML = favorite;
+      document.getElementById("date").innerHTML = date;
+      document.getElementById("info_string").innerHTML = yname + " &bull; " + vname + " &bull; Average price: $" + price + " &bull; Expert score: " + score;
+
+      var star_string = "";
+      for (i=0; i < (5-rating); i++) {
+        star_string += "<span class=\"star\"></span>";
+      }
+      for (i=0; i < rating; i++) {
+        star_string += "<span class=\"star checked-star\"></span>";
+      }
+      document.getElementById("star_box").innerHTML = star_string;
+    });
+  })
+  </script>
+</script>
+</body>
+</html>

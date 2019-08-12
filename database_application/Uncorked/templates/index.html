@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" id="homepage">
+<head>
+    <meta charset="UTF-8">
+    <title>Uncorked</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+<div id="homepage_Container">
+
+<header id="homepage_Header">
+  <h1 id="page_title">Uncorked</h1>
+</header>
+
+  <span class="main_container">
+    <form action="search">
+      <input type="text" placeholder="Search for a wine.." name="search">
+      <button type="submit" id="submit"><i class="fa fa-search"></i></button>
+      <br /><br />
+    </form>
+  </span>
+  <span id="buttons">
+    <a href="login" class="button">Login</a>
+    <a href="new_user" class="button">Create new user</a>
+  </span>
+  <br />
+  <br />
+
+</div>
+</body>
+
+</html>

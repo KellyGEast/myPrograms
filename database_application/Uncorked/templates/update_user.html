@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" id="homepage">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+<div id="new_user_Container">
+
+<header id="homepage_Header">
+  <h1>Update User Info</h1>
+</header>
+
+  <span class="main_container">
+    <form action="/" >
+      <label>
+        Username:
+      </label>
+      <span id="username"></span>
+      <br /><br />
+      <label for="uname">
+        Name:
+      </label>
+      <input type="text" name="uname" id="uname" required/>
+      <br /><br />
+      <label for="email">
+        Email:
+      </label>
+      <input type="text" name="email" id="email" required/>
+      <br /><br />
+      <label for="password">
+        Password:
+      </label>
+      <input type="password" name="password" id="password" required/>
+      <br />
+    </form>
+  </span>
+  <span id="buttons">
+    <a href="delete_user">Delete User</a>
+    <a href="user_home" class="reverseButton" id="submit">Submit</a>
+  </span>
+
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    var username = sessionStorage.getItem("username");
+    document.getElementById("username").innerHTML = username;
+    var url = '/update_user_receiver/' + username;
+    document.getElementById("submit").onclick = function() {
+      $.ajax({
+          url: url,
+          data: $('form').serialize(),
+          type: 'POST',
+      });
+      };
+  })
+
+</script>
+
+</html>

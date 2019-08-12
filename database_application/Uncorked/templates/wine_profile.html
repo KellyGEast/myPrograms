@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wine Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/wine_profile.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+</head>
+
+<body>
+<div id="profile_Container">
+
+<div id="button">
+  <a href="review">Review</a>
+</div>
+<header>
+  <h1 id="wine_title"></h1>
+</header>
+<div id="wine_score_box">
+  <p><span id="wine_score"></span> points</p>
+</div>
+
+ <div id="variety">
+  <p id="variety_title"></p>
+  <p id="vdescription"></p>
+ </div>
+ <div id="winery">
+  <p>Winery: <span id="yname"></span></p>
+</div>
+<div id="price">
+  <p>Average Price: $<span id="price_value"></span></p>
+</div>
+<div id="wine_description">
+ </div>
+
+  <div id="serve_info_box"><h2 id="serve_info">Serving&nbspInformation</h2></div>
+  <div id="glass_img"></div>
+
+  <div id="serving_instructions">
+    <p id="serve_temp" class="script"><span id="serving_temp"></span>&deg;</p>
+    <p id="glass_description"></p>
+  </div>
+  <div id="serving_time">
+    <img id="stopwatch" src="{{ url_for('static',filename='images/stopwatch.png') }}" alt="image of a stopwatch" />
+    <span>
+      <p>Chill in fridge for</p>
+      <p id="serving_minutes" class="script"></p>
+      <p>minutes</p>
+    </span>
+  </div>
+  <div id="country_info">
+  </div>
+  <div id="bottom_row">
+    <br />
+    <a href="search">Search again</a>
+    <span id="winery_home"></span>
+    <span id="variety_home"></span>
+    <span id="home_button"><a href="user_home">User Home</a></span>
+    <a href="/" id="logout"><i class="fa fa-sign-out"></i></a>
+    <br />
+  </div>
+
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+document.getElementById("logout").onclick = function() {
+  sessionStorage.setItem("username", "");
+}
+
+$(document).ready(function() {
+  // setup some JSON to use
+  // in reality, this should work by sending data to and from python
+  var wine_id_string = window.location.search;
+  var wine_id_string_split = wine_id_string.split("=")
+  var wine_id = parseInt(wine_id_string_split[1]);
+  var url = "/wine_profile_receiver/" + wine_id;
+  // get wine values
+  $.getJSON(url,function(data){
+    var wid = data[0].wid;
+    var wname = data[0].wname;
+    var wdescription = data[0].wdescription;
+    var price = data[0].price;
+    var score = data[0].score;
+    var yname = data[0].yname;
+    var vname = data[0].vname;
+
+    // set wine values
+    document.getElementById("wine_title").innerHTML = wname;
+    document.getElementById("wine_description").innerHTML = "<p>" + wdescription + "</p>";
+    document.getElementById("price_value").innerHTML = price;
+    document.getElementById("wine_score").innerHTML = score;
+    document.getElementById("yname").innerHTML = yname;
+    document.getElementById("variety_title").innerHTML = vname;
+
+    // update buttons
+    document.getElementById("button").innerHTML= "<a href=\"review?s=" + wid + "=" + wname + "\">Review</a>";
+    document.getElementById("winery_home").innerHTML= "<a class=\"larger_button\" href=\"winery_home?s=" + yname + "\">More from this Winery</a>";
+    document.getElementById("variety_home").innerHTML= "<a class=\"larger_button\" href=\"variety_home?s=" + vname + "\">More from this Variety</a>";
+
+    var username = sessionStorage.getItem("username");
+    if (username == null || username == undefined || username == ""){
+      document.getElementById("button").innerHTML= "<a class=\"larger_button\" href=\"/\">Login or create a user to review</a>";
+      document.getElementById("home_button").innerHTML= "<a href=\"/\">Back to Home</a>";
+    }
+
+    // get variety info
+    var url = "/wine_profile_receiver/variety/" + vname;
+    // get variety values
+    $.getJSON(url,function(data){
+      var vname = data[0].vname;
+      var vdescription = data[0].vdescription;
+      var glass_description = data[0].glass_description;
+      var glass_img = data[0].glass_img;
+      var serving_temp = data[0].serving_temp;
+      var serving_info = data[0].serving_info;
+      var serving_info_split = serving_info.split(" ");
+      var serving_minutes = serving_info_split[4];
+
+      // set variety values
+      document.getElementById("vdescription").innerHTML = vdescription;
+      document.getElementById("glass_description").innerHTML = glass_description.replace("\"", "");
+      document.getElementById("serving_temp").innerHTML = serving_temp.replace(" deg", "");
+      document.getElementById("serving_minutes").innerHTML = serving_minutes;
+
+      $.ajax({
+          url: '/build_image_url/'+ glass_img,
+          type: 'POST',
+          success: function(data){
+            document.getElementById("glass_img").innerHTML = data;
+          }
+      });
+    }); // end get variety values
+
+    // get country info
+    var url = "/wine_profile_receiver/winery/" + yname;
+    // get winery values
+    $.getJSON(url,function(data){
+      var location = data[0].location;
+      var location_img = "<img id=\"country\" src=\"../static/images/countries/" + location + ".png\" />";
+      // set winery values
+      document.getElementById("country_info").innerHTML = location_img + "<p>" + location + "</p>";
+    }); // end get winery values
+  });
+});
+</script>
+</script>
+</html>

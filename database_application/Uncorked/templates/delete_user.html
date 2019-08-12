@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" id="homepage">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+<div id="homepage_Container">
+
+<header id="homepage_Header">
+  <h1>Delete User</h1>
+</header>
+
+  <span class="main_container">
+    <h2>Are you sure you want to delete your user?</h2>
+  </span>
+  <span id="buttons">
+    <a href="user_home">No</a>
+    <a href="/" class="reverseButton" id="confirm_delete">Yes</a>
+  </span>
+
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+  document.getElementById("confirm_delete").onclick = function() {
+    var username = sessionStorage.getItem("username");
+    var url = "/delete_user_receiver/" + username;
+    sessionStorage.setItem("username", "");
+    $.getJSON(url);
+  }
+</script>
+</script>
+</html>

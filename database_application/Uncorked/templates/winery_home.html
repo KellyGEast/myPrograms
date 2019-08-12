@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" id="homepage">
+<head>
+    <meta charset="UTF-8">
+    <title>Uncorked - Winery Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/user_home.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+<div id="winery_Container">
+
+<header id="winery_header">
+  <div id="wine_avatar"><img src="{{ url_for('static',filename='images/wine.png') }}" alt="illustration of wine bottle and glass" /></div>
+  <h1 id="name"></h1>
+  <p id="location"></p>
+</header>
+
+<div id="avg_score_container">
+  <div id="score">
+    <p class="count_header">AVERAGE EXPERT SCORE</p>
+    <span class="count" id="avg_score"></span>
+  </div>
+  <div id="winery_buttons">
+    <span id="home_button"><a href="user_home" id="home"><i class="fa fa-home"></i></a></span><a id="more_wines" class="larger_button">Wines from this winery</a><a href="search" class="larger_button">Search for a new wine</a><a href="/" id="logout"><i class="fa fa-sign-out"></i></a>
+  </div>
+</div>
+
+<div id="wine_list">
+</div>
+
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    var username = sessionStorage.getItem("username");
+    if (username == null || username == undefined || username == ""){
+      document.getElementById("home_button").innerHTML= "<a href=\"/\" id=\"home\"><i class=\"fa fa-home\"></i></a>";
+    }
+
+    var winery_string = window.location.search;
+    var winery_string_split = winery_string.split("=")
+    var yname = winery_string_split[1];
+
+    var yname_sql = yname.replace("'", "''");
+    var url = "/winery_home_receiver/" + yname_sql;
+    $.getJSON(url,function(data){
+      var name = data[0].yname;
+      var location = data[0].location;
+      var avg_score = data[0].avg_score;
+      document.getElementById("name").innerHTML = name;
+      document.getElementById("location").innerHTML = location;
+      document.getElementById("avg_score").innerHTML = parseFloat(avg_score).toFixed(1);
+    });
+
+    document.getElementById("more_wines").onclick = function() {
+      var url = "/winery_home_receiver/more_wines/" + yname_sql;
+      $.getJSON(url,function(data){
+        var result_String = "";
+        for (i in data) {
+            result_String += "<div class=\"single_wine\"><a class=\"wine_title margin_right_50\" href=\"wine_profile?s=" + data[i].wid + "\">" + data[i].wname + " &bull; " + data[i].yname + "</a></div>";
+        }
+        document.getElementById("wine_list").style.display = "block";
+        document.getElementById("wine_list").innerHTML = "<h2 class=\"script\">More from this winery</h2><hr /><br />" + result_String;
+      });
+    }
+  })
+
+
+
+  document.getElementById("logout").onclick = function() {
+    sessionStorage.setItem("username", "");
+  }
+
+</script>
+</html>

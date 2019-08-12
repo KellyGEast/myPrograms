@@ -1,0 +1,186 @@
+/* grid setup */
+#user_Container {
+  width: 75%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-areas:
+    "reviews user_info favorites"
+    "favorite_list favorite_list favorite_list";
+  align-items: center;
+  justify-items: center;
+  background-color: #ffffe0;
+  border-radius: 50px;
+  text-align: center;
+}
+
+#winery_Container {
+  width: 75%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "user_info avg_score"
+    "favorite_list favorite_list";
+  align-items: center;
+  justify-items: center;
+  background-color: #ffffe0;
+  border-radius: 50px;
+  text-align: center;
+}
+
+#variety_Container {
+  width: 75%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  grid-template-areas:
+    "variety_info"
+    "favorite_list";
+  align-items: center;
+  justify-items: center;
+  background-color: #ffffe0;
+  border-radius: 50px;
+  text-align: center;
+}
+
+#avg_score_container {
+  grid-area: avg_score;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#score {
+  align-self: center;
+  margin-top: auto;
+}
+
+#winery_buttons{
+  align-self: flex-end;
+  margin: auto 0 50px 0;
+}
+
+#review_container {
+  grid-area: reviews;
+}
+
+header {
+  grid-area: user_info;
+  padding: 25px 0;
+}
+
+#winery_header {
+  padding: 50px 50px 50px 100px;
+}
+
+#variety_info {
+  grid-area: variety_info;
+}
+
+#favorite_container {
+  grid-area: favorites;
+}
+
+#wine_list {
+  grid-area: favorite_list;
+  background-color: #800000;
+  color: #ffffe0;
+  width: 100%;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  padding: 25px 0;
+  display: none;
+}
+
+.buttons a {
+  background-color: #ffffe0;
+  color: #800000;
+}
+
+#wine_list a:hover {
+  background-color: #ff9999;
+  border-color: #ff9999;
+}
+
+#logout, #home {
+  width: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.single_wine {
+  display: grid;
+  grid-template-rows: 3em;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "title buttons";
+}
+
+.title, .wine_title {
+  grid-area: title;
+  background-color: #800000;
+  border-radius: 0;
+  display: block;
+  text-align: left;
+  margin: 0 10px 0 50px;
+  padding: 0 20px;
+  height: 3em;
+  width: auto;
+  display: flex;
+  flex-direction:  column;
+  justify-content: center;
+  justify-self: stretch;
+}
+
+.buttons {
+  grid-area: buttons;
+  margin-right: 50px;
+  margin-left: 0;
+}
+
+#wine_avatar {
+  width: 200px;
+  height: 200px;
+  background-color: #800000;
+  border-radius: 50%;
+  margin: auto;
+}
+
+#wine_avatar img {
+  height: 80%;
+  margin: 20px;
+}
+
+.count_header {
+  font-size: 1.25em;
+  color: #999;
+}
+
+.count {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+a {
+  background-color: #800000;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
+}
+
+h2 {
+  text-align: left;
+  padding-left: 50px;
+  font-size: 2em;
+}
+
+hr {
+  margin: 0 50px;
+}
+
+.margin_right_50 {
+  margin-right: 50px;
+}

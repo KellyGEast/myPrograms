@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" id="homepage">
+<head>
+    <meta charset="UTF-8">
+    <title>Uncorked - User Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/user_home.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+<div id="user_Container">
+
+<div id="review_container">
+  <p class="count_header">REVIEWS</p>
+  <a id="review"><span class="count" id="review_count"></span></a>
+</div>
+
+<header>
+  <div id="wine_avatar"><img src="{{ url_for('static',filename='images/wine.png') }}" alt="illustration of wine bottle and glass" /></div>
+  <h1 id="name"></h1>
+  <p><span id="username"></span> &bull; <span id="email"></span><span id="avg_price"></span></p>
+  <a href="update_user">Update Information</a><a href="search">Search for a wine</a><a href="/" id="logout"><i class="fa fa-sign-out"></i></a>
+</header>
+
+<div id="favorite_container">
+  <p class="count_header">FAVORITES</p>
+  <span id="outer_favorite" class="count"><a id="favorite"><span class="count" id="favorite_count"></span></a></span>
+</div>
+
+<div id="wine_list">
+</div>
+
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    var username = sessionStorage.getItem("username");
+    var url = "/user_home_receiver/" + username;
+    $.getJSON(url,function(data){
+      var username2 = data[0].username;
+      var name = data[0].uname;
+      var email = data[0].email;
+      document.getElementById("username").innerHTML = username2;
+      document.getElementById("name").innerHTML = name;
+      document.getElementById("email").innerHTML = email;
+    });
+
+    var url = "/user_home_receiver/counts/" + username;
+    $.getJSON(url,function(data){
+      if (data[0] !== null && data[0] !== undefined){
+        var review_count = data[0].rcount;
+        var favorite_count = data[0].fcount;
+        document.getElementById("review_container").innerHTML = "<p class=\"count_header\">REVIEWS</p><a><span class=\"count\">" + review_count + "</span></a>";
+        document.getElementById("favorite_container").innerHTML = "<p class=\"count_header\">FAVORITES</p><a><span class=\"count\">" + favorite_count + "</span></a>";
+      }
+      else {
+        document.getElementById("review_container").innerHTML = "<p class=\"count_header\">REVIEWS</p><span class=\"count\">0</span>";
+        document.getElementById("favorite_container").innerHTML = "<p class=\"count_header\">FAVORITES</p><span class=\"count\">0</span>";
+      }
+    });
+
+    var url = "/user_home_receiver/avg_price/" + username;
+    $.getJSON(url,function(data){
+      if (data[0] !== null && data[0] !== undefined){
+        var avg_price = data[0].avg_price;
+        document.getElementById("avg_price").innerHTML = "<br /> Average price of reviewed wines: $" + parseFloat(avg_price).toFixed(2);
+      }
+    });
+  })
+
+  document.getElementById("review_container").onclick = function() {
+    var username = sessionStorage.getItem("username");
+    var url = "/user_home_receiver/reviews/" + username;
+    $.getJSON(url,function(data){
+      var result_String = "";
+      for (i in data) {
+          result_String += "<div class=\"single_wine\"><a class=\"wine_title\" href=\"wine_profile?s=" + data[i].wid + "\">" + data[i].wname + " &bull; " + data[i].yname + "</a><span class=\"buttons\"><a href=\"view_review?s=" + data[i].wid + "\">My Review</a></span></div>";
+      }
+      document.getElementById("wine_list").style.display = "block";
+      document.getElementById("wine_list").innerHTML = "<h2 class=\"script\">My Reviews</h2><hr /><br />" + result_String;
+    });
+  }
+
+  document.getElementById("favorite_container").onclick = function() {
+    var username = sessionStorage.getItem("username");
+    var url = "/user_home_receiver/favorites/" + username;
+    $.getJSON(url,function(data){
+      var result_String = "";
+      for (i in data) {
+          result_String += "<div class=\"single_wine\"><a class=\"wine_title\" href=\"wine_profile?s=" + data[i].wid + "\">" + data[i].wname + " &bull; " + data[i].yname + "</a><span class=\"buttons\"><a href=\"view_review?s=" + data[i].wid + "\">My Review</a></span></div>";
+      }
+      document.getElementById("wine_list").style.display = "block";
+      document.getElementById("wine_list").innerHTML = "<h2 class=\"script\">My Favorites</h2><hr /><br />" + result_String;
+    });
+  }
+
+  document.getElementById("logout").onclick = function() {
+    sessionStorage.setItem("username", "");
+  }
+
+</script>
+</html>
