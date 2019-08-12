@@ -37,3 +37,11 @@ Compiler Implementation
 Primary class: AST.java
 
 This program implements a compiler for a fictional programming language. The compiler includes a scanner, parser, name and type analysts, and the generation of relevant assembly code.
+
+*********************************
+Sunflower Cafe Website
+*********************************
+Primary file: index.html
+
+Fictional cafe website designed with HTML, CSS, Javascript
+
