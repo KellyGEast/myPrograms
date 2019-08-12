@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--  Author:  Kelly East
+        Date:    04/23/2019   
+  -->
+  <title>Contact Us</title>
+  <meta charset="UTF-8" />
+  <link href="../styleSheets/masterStyles.css" 
+      rel="stylesheet"
+      type="text/css" />
+  <link href="../styleSheets/contact.css" 
+      rel="stylesheet"
+      type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+</head>
+
+<body>
+
+	<div id="contentShell">
+	
+	<header>
+	
+		<nav>
+			<a href="index.html" class="home"><img src="../images/home.png" alt="Home icon" /></a>
+			<a href="about.html">About Us</a>
+			<a href="menu.html">Our Menu</a>
+			<a href="loyalty.html">Rewards</a>
+			<a href="events.html">Events</a>
+			<a href="team.html">Our Team</a>
+			<a href="contact.html">Contact Us</a>
+		</nav>
+		
+		<h1>Contact Us</h1>
+		
+	</header>
+	
+	<main>
+	
+		<article>
+			<h2>Suggestions, Questions, Concerns? Contact us using the form below!</h2>
+			
+			<form name="form01" action="http://itins3.madisoncollege.edu/echo.php" method="post">
+
+					<label>First name: </label>
+					<input type="text"
+						   name="firstname"
+					 placeholder="First Name"
+					 minlength="1"
+						   maxlength="20"
+					 pattern="[A-Za-z](.)*"
+					 title="First character must be a letter of the alphabet"
+					 required  />
+
+					<br /><br />
+
+					<label>Last name: </label>
+					<input type="text"
+						   name="lastname"
+					 placeholder="Last Name"
+					 minlength="2"
+						   maxlength="20"
+					 pattern="[A-Za-z][A-Za-z](.)*"
+					 title="First two characters must be letters of the alphabet"
+					 required  />
+
+					<br /><br />
+					
+					<label>Email: </label>
+				    <input type="email"
+					   name="email"
+					   placeholder="Email Address"
+					   minlength="4"
+					   maxlength="400"
+					   required  />
+					   
+					   <br /><br />
+
+					<label>Comments: </label>
+					<br />
+						<textarea name="comments"
+						placeholder="Key in your comment here, and click the Submit button"
+						minlength="10"
+						required></textarea>
+						<br /><br />
+
+					<div class="formButtons">
+						<input class="button" type="submit" value="Submit" />
+						<input class="button" type="reset"  value="Clear" />
+					</div>
+
+			</form>
+			
+		</article>
+		
+	</main>
+	
+	<footer>
+	
+		<section class="footerNavButtons">
+			<a href="index.html">Back to Home</a>
+		</section>
+		
+		<p id="todaysDate"></p>
+		<p id="copyright">&copy; 2019 by Kelly East</p>
+		
+	</footer>
+	
+	</div>
+	
+<script src="../javaScriptFiles/masterJavaScript.js"></script>
+
+</body>
+</html>

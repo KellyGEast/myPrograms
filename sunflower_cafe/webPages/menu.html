@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--  Author:  Kelly East
+        Date:    04/23/2019   
+  -->
+  <title>Our Menu</title>
+  <meta charset="UTF-8" />
+  <link href="../styleSheets/masterStyles.css" 
+      rel="stylesheet"
+      type="text/css" />
+  <link href="../styleSheets/menu.css" 
+      rel="stylesheet"
+      type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet" />
+</head>
+
+<body>
+
+	<div id="contentShell">
+	
+	<header>
+		
+		<nav>
+			<a href="index.html" class="home"><img src="../images/home.png" alt="Home icon" /></a>
+			<a href="about.html">About Us</a>
+			<a href="menu.html">Our Menu</a>
+			<a href="loyalty.html">Rewards</a>
+			<a href="events.html">Events</a>
+			<a href="team.html">Our Team</a>
+			<a href="contact.html">Contact Us</a>
+		</nav>
+		
+		<section id="seasonalLatte"></section>
+		
+		<h1>Our Menu</h1>
+		
+	</header>
+	
+	<main>
+	
+		<section>
+		
+			<button class="collapsible" onclick="expandBakery()">Bakery</button>
+			
+			<div class="content" id="bakeryContent">
+			<table id="bakeryMenu">
+				<tr>
+					<th colspan="2">Cupcakes</th>
+				</tr>
+				<tr>
+					<td class="col1">Lemon Blueberry</td>
+					<td>$2.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Oreo</td>
+					<td>$2.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Prosecco</td>
+					<td>$2.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Confetti</td>
+					<td>$2.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Dark Chocolate</td>
+					<td>$2.75</td>
+				</tr>
+				<tr>
+					<td class="header" colspan="2">Biscuits &amp; Scones</td>
+				</tr>
+				<tr>
+					<td class="col1">Cream Cheese Biscuit</td>
+					<td>$1.50</td>
+				</tr>
+				<tr>
+					<td class="col1">Mixed Berry Scone</td>
+					<td>$2.00</td>
+				</tr>
+				<tr>
+					<td class="col1">Key Lime Scone</td>
+					<td>$2.00</td>
+				</tr>
+				<tr>
+					<td class="col1">Cinnamon Roll Scone</td>
+					<td>$2.00</td>
+				</tr>
+				<tr>
+					<td class="col1">Cheese &amp; Herb Scone</td>
+					<td>$2.00</td>
+				</tr>
+				<tr>
+					<td class="header" colspan="2">Assorted Sweets</td>
+				</tr>
+				<tr>
+					<td class="col1">Sprinkled Sugar Cookie</td>
+					<td>$1.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Confetti Blondies</td>
+					<td>$2.00</td>
+				</tr>
+				<tr>
+					<td class="col1">Rice Krispie Treat</td>
+					<td>$1.50</td>
+				</tr>
+				<tr>
+					<td class="col1">Sunflower Cookie</td>
+					<td>$1.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Peanut Butter Dream Bar</td>
+					<td>$2.25</td>
+				</tr>
+			</table>
+			
+			</div>
+			
+		</section>
+		
+		<section>
+	
+			<button class="collapsible" onclick="expandBrunch()">Brunch</button>
+			
+			<div class="content" id="brunchContent">
+			<table id="brunchMenu">
+				<tr>
+					<th colspan="2">Sweet</th>
+				</tr>
+				<tr>
+					<td class="col1">Creme Brulee French Toast</td>
+					<td>$8.50</td>
+				</tr>
+				<tr>
+					<td class="col1">Pumpkin Pancakes with Cinnamon Butter</td>
+					<td>$7.50</td>
+				</tr>
+				<tr>
+					<td class="col1">Strawberry Belgian Waffle with Fresh Whipped Cream</td>
+					<td>$8.50</td>
+				</tr>
+				<tr>
+					<td class="col1">Classic Cinnamon Roll with Fresh Fruit</td>
+					<td>$6.50</td>
+				</tr>
+				<tr>
+					<td class="header" colspan="2">Savory</td>
+				</tr>
+				<tr>
+					<td class="col1">Asparagus, Tomato &amp; Goat Cheese Frittata</td>
+					<td>$7.50</td>
+				</tr>
+				<tr>
+					<td class="col1">Breakfast Egg &amp; Ham Casserole</td>
+					<td>$7.50</td>
+				</tr>
+				<tr>
+					<td class="col1">Biscuits &amp; Gravy</td>
+					<td>$6.25</td>
+				</tr>
+				<tr>
+					<td class="col1">Pesto &amp; Roasted Tomato Omelet</td>
+					<td>$7.50</td>
+				</tr>
+				<tr>
+					<td class="col1">Southwest Avocado Toast with Breakfast Potatoes</td>
+					<td>$7.00</td>
+				</tr>
+				<tr>
+					<td class="header" colspan="2">Drinks &amp; Coffee</td>
+				</tr>
+				<tr>
+					<td class="col1">Mimosa (classic, strawberry, pomegranate, mango)</td>
+					<td>$6.00</td>
+				</tr>
+				<tr>
+					<td class="col1">Bloody Mary</td>
+					<td>$6.50</td>
+				</tr>
+				<tr>
+					<td class="col1">Cafe Latte</td>
+					<td>$3.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Chai Tea Latte</td>
+					<td>$4.00</td>
+				</tr>
+				<tr>
+					<td class="col1">Americano</td>
+					<td>$2.50</td>
+				</tr>
+				<tr>
+					<td class="col1">Cappuccino</td>
+					<td>$2.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Bottomless House-Roasted Coffee</td>
+					<td>$3.25</td>
+				</tr>
+			</table>
+			
+			</div>
+			
+		</section>
+		
+		<section>
+		
+			<button class="collapsible" onclick="expandLunch()">Lunch</button>
+			
+			<div class="content" id="lunchContent">			
+			<table id="lunchMenu">
+				<tr>
+					<th colspan="2">Salads</th>
+				</tr>
+				<tr>
+					<td class="col1">Herb, Pesto &amp; Chicken Salad</td>
+					<td>$8.25</td>
+				</tr>
+				<tr>
+					<td class="col1">Beet &amp; Goat Cheese Salad with White Wine Vinegar</td>
+					<td>$7.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Steak Cobb Salad with Cream Avocado Lime Dressing</td>
+					<td>$8.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Honey-Lime Berry Salad with Chicken</td>
+					<td>$8.25</td>
+				</tr>
+				<tr>
+					<td class="col1">Garden Salad</td>
+					<td>$6.00</td>
+				</tr>
+				<tr>
+					<td class="header" colspan="2">Soups</td>
+				</tr>
+				<tr>
+					<td class="col1">Broccoli Cheddar</td>
+					<td>$5.25</td>
+				</tr>
+				<tr>
+					<td class="col1">Lemon Vegetable</td>
+					<td>$4.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Creamy Tomato Soup</td>
+					<td>$4.75</td>
+				</tr>
+				<tr>
+					<td class="col1">Baked Potato Soup</td>
+					<td>$5.25</td>
+				</tr>
+				<tr>
+					<td class="col1">Ground Beef &amp; Bean Chili</td>
+					<td>$5.25</td>
+				</tr>
+				<tr>
+					<td class="header" colspan="2">Sandwiches</td>
+				</tr>
+				<tr>
+					<td class="col1">Gourmet Grilled Cheese</td>
+					<td>$6.25</td>
+				</tr>
+				<tr>
+					<td class="col1">Garden Veggie Chickpea Salad Sandwich</td>
+					<td>$6.25</td>
+				</tr>
+				<tr>
+					<td class="col1">Classic Club Sandwich</td>
+					<td>$6.75</td>
+				</tr>
+				<tr>
+					<td class="col1">French Dip Sandwich</td>
+					<td>$7.25</td>
+				</tr>
+				<tr>
+					<td class="col1">Chicken Caesar Wrap</td>
+					<td>$7.25</td>
+				</tr>
+				<tr>
+					<td class="col1">BLT Wrap</td>
+					<td>$7.25</td>
+				</tr>
+			</table>
+			
+			</div>
+			
+		</section>
+		
+	</main>
+	
+	<footer>
+	
+		<section class="footerNavButtons">
+			<a href=#contentShell>Top of Page</a>
+			<a href="index.html">Back to Home</a>
+		</section>
+		
+		<p id="todaysDate"></p>
+		<p id="copyright">&copy; 2019 by Kelly East</p>
+		
+	</footer>
+	
+	</div>
+	
+<script src="../javaScriptFiles/masterJavaScript.js"></script>
+
+</body>
+</html>

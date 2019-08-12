@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--  Author:  Kelly East
+        Date:    04/23/2019   
+  -->
+  <title>Rewards Program</title>
+  <meta charset="UTF-8" />
+  <link href="../styleSheets/masterStyles.css" 
+      rel="stylesheet"
+      type="text/css" />
+  <link href="../styleSheets/loyalty.css" 
+      rel="stylesheet"
+      type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet" />
+</head>
+
+<body>
+
+	<div id="contentShell">
+	
+	<header>
+	
+		<nav>
+			<a href="index.html" class="home"><img src="../images/home.png" alt="Home icon" /></a>
+			<a href="about.html">About Us</a>
+			<a href="menu.html">Our Menu</a>
+			<a href="loyalty.html">Rewards</a>
+			<a href="events.html">Events</a>
+			<a href="team.html">Our Team</a>
+			<a href="contact.html">Contact Us</a>
+		</nav>
+		
+		<h1>Rewards Program</h1>
+		
+	</header>
+	
+	<main>
+	
+		<section>
+			<h2>Complete the form below to join our rewards program and be notified of upcoming events, specials, and earn rewards!</h2>
+			
+				<form name="loyaltyProgram" action="http://itins3.madisoncollege.edu/echo.php" method="post">
+					<fieldset>
+					  <legend>Member Information</legend>
+						<label>Member name: </label>
+						<input type="text"
+							   name="firstname"
+							   placeholder="First Name"
+							   maxlength="20"
+							   pattern="[A-Za-z](.)*"
+							   title="First character must be a letter of the alphabet"
+						       required  />
+
+						<input type="text"
+							   name="lastname"
+						       placeholder="Last Name"
+						       minlength="2"
+							   maxlength="25"
+						       pattern="[A-Za-z](.)*"
+						       title="First character must be a letter of the alphabet"
+						       required  />
+
+						<br /><br />
+
+					  <label>Address: </label>
+					  <input type="text"
+							   name="streetAddress"
+							   placeholder="Street Address"
+							   minlength="3"
+							   maxlength="35"
+							   required  />
+					  <br /><br />
+
+					  <label>City: </label>
+					  <input type="text"
+							   name="city"
+							   placeholder="City"
+							   minlength="2"
+							   maxlength="20"
+							   required  />
+					  <br /><br />
+					  
+					  <label>State: </label>
+					  <input type="text"
+							  name="state"
+							  placeholder="State"
+							  minlength="2"
+							  title="State must be 2 letter code"
+							  pattern="^[a-zA-Z]{2}$"
+							  required  />
+
+					<label class="shortlabel">Zip: </label>
+					<input type="text"
+							  name="zipcode"
+							  placeholder="Zip Code"
+							  minlength="5"
+							  pattern="^\d{5}$|^\d{5}-\d{4}$"
+							  title="Format must be 5 digits or #####-####"
+							  required  />
+
+					  <br /><br />
+					  
+					  <label>Country: </label>
+					  <select name="country" required>
+						<option value="" disabled selected hidden>Please select...</option>
+						<option value="USA">United States of America</option>
+						<option value="MEX">Mexico</option>
+						<option value="CAN">Canada</option>
+						<option value="ONA">Other - North America</option>
+						<option value="OSA">Other - South America</option>
+						<option value="OAF">Other - Africa</option>
+						<option value="OAS">Other - Asia</option>
+						<option value="OAU">Other - Austrailia</option>
+						<option value="OEU">Other - Europe</option>
+					  </select>
+					  <br /><br />
+					  
+					  <label>Gender: </label>
+							<input type="radio" name="gender" value="M" id="radio1" /><label for="radio1">Male</label>
+							<input type="radio" name="gender" value="F" id="radio2" /><label for="radio2">Female</label>
+							<input type="radio" name="gender" value="UNK" id="radio3" /><label for="radio3">No Answer</label>
+					  <br /><br />
+
+					  <label>Birthdate: </label>
+					  <input type="date"
+						   name="birthdate"
+						   required  />
+					  <br /><br />
+					  
+					  <label>Local Telephone: </label>
+					  <input type="tel"
+						   name="telephone"
+						   placeholder="Telephone Number"
+						   pattern="^\d{10}$|^\d{3}-\d{3}-\d{4}$"
+						   title="Format must be ###-###-#### or 10 digits"
+						   required  />
+					  <br /><br />
+
+					  <label>Email: </label>
+					  <input type="email"
+						   name="email"
+						   placeholder="Email Address"
+						   minlength="4"
+						   maxlength="400"
+						   required  />
+					  <br /><br />
+					</fieldset>
+
+					<br />
+
+					<fieldset>
+					  <legend>Contact Preferences</legend>
+						<input type="checkbox" name="textMessage" value="textMessage" />Text Message
+						<input type="checkbox" name="email" value="email" />Email
+						<input type="checkbox" name="mail" value="mail" />Mail
+						<input type="checkbox" name="noContact" value="noContact" />Do Not Contact
+					</fieldset>
+					<br />
+					<fieldset>
+					  <legend>Account Security</legend>
+						<label>Password: </label>
+					  <input type="password"
+						   name="spassword"
+						   minlength="4"
+						   maxlength="15"
+						   required  />
+					  <br /><br />
+
+					  <label>Confirm password: </label>
+					  <input type="password"
+						   name="cpassword"
+						   minlength="4"
+						   maxlength="15"
+						   required  />
+					  <br /><br />
+					  </fieldset>
+					  <br />
+					  
+					  <div class="formButtons">
+							<input class="button" type="submit" value="Submit" />
+							<input class="button" type="reset"  value="Clear" />
+					  </div>	
+					  
+					</form>
+					
+		</section>
+		
+	</main>
+	
+	<footer>
+	
+		<section class="footerNavButtons">
+			<a href=#contentShell>Top of Page</a>
+			<a href="index.html">Back to Home</a>
+		</section>
+		
+		<p id="todaysDate"></p>
+		<p id="copyright">&copy; 2019 by Kelly East</p>
+		
+	</footer>
+	
+	</div>
+	
+<script src="../javaScriptFiles/masterJavaScript.js"></script>
+
+</body>
+</html>
