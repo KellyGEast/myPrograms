@@ -5,3 +5,5 @@ This application runs off of a database of over 60,000 wines. Users can search f
 To run the program, the wine database must be created. The flask framework and Python must be installed on the computer and the application is run by using the command 'python application.py' at the command propmt from the directory containing the Uncorked folder.
 
 The uncorked_Demo.mov file contains a video demo of the application.
+
+This application was writted as part of a group project. The HTML, Javascript and CSS files were written solely by me, Kelly East. The application.py file and stored procedures were co-written between me and another group member.
