@@ -1,0 +1,203 @@
+-- final sql code - stored procedure
+-- by Jiarui Zhang & Kelly East
+-- 08/02/2019
+
+-- 1. getWine_func1
+
+delimiter $$
+drop procedure if exists getWine;
+create procedure getWine(IN wineChar VARCHAR(255)) 
+begin 
+      select wid, wname, yname
+      from Wine
+      where wname like wineChar;
+end $$
+delimiter ;
+
+
+-- 2. getWineInfo_func2
+
+delimiter $$
+drop procedure if exists getWineInfo;
+create procedure getWineInfo(IN wineID VARCHAR(255)) 
+begin 
+      select *
+      from Wine
+      where wid = wineID;
+end $$
+delimiter ;
+
+-- 3. getWineNameY_func3
+
+delimiter $$
+drop procedure if exists getWineNameY;
+create procedure getWineNameY(IN wineryName VARCHAR(255)) 
+begin 
+      select wid, wname
+      from Wine
+      where yname = wineryName;
+end $$
+delimiter ;
+
+-- 4. getWineNameV_func4
+
+delimiter $$
+drop procedure if exists getWineNameV;
+create procedure getWineNameV(IN varietyName VARCHAR(255)) 
+begin 
+      select wid, wname, yname
+      from Wine
+      where vname = varietyName
+limit 100;
+end $$
+delimiter ;
+
+
+-- 5. getUserInfo_func5
+
+delimiter $$
+drop procedure if exists getUserInfo;
+create procedure getUserInfo(IN usersName VARCHAR(255)) 
+begin 
+      select username, uname, email
+      from User
+      where username = usersName;
+end $$
+delimiter ;
+
+-- 6. getUserReview_func6
+
+delimiter $$
+drop procedure if exists getUserReview;
+create procedure getUserReview(IN usersName VARCHAR(255)) 
+begin 
+      select R.username, W.wname, R.comment, R.star, W.price, W.score, W.yname, W.vname, W.wid
+      from Review R, Wine W
+      where R.wid = W.wid and R.username = usersName;
+end $$
+delimiter ;
+
+-- 7. getCountPrice_func7
+
+delimiter $$
+drop procedure if exists getCountPrice;
+create procedure getCountPrice(IN usersName VARCHAR(255)) 
+begin 
+      select count(R.wid), avg(W.price)
+      from Review R, Wine W
+      where R.username = usersName and R.wid = W.wid
+      group by R.username;
+end $$
+delimiter ;
+
+
+-- 8. getFavWine_func8
+
+delimiter $$
+drop procedure if exists getFavWine;
+create procedure getFavWine(IN usersName VARCHAR(255)) 
+begin 
+      select W.wid, W.wname, W.yname
+      from Review R, Wine W
+      where R.username = usersName and R.favlist = "Yes" and R.wid = W.wid;
+end $$
+delimiter ;
+
+-- 9. getWineryTopTen_func9
+
+delimiter $$
+drop procedure if exists getWineryTopTen;
+create procedure getWineryTopTen(IN locationName VARCHAR(255)) 
+begin 
+    select W.yname, avg(W.score)
+    from Wine W, Winery Y
+	where W.yname = Y.yname and Y.location = locationName
+	group by W.yname
+	order by avg(W.score) desc
+    limit 10; 
+end $$
+delimiter ;
+
+
+-- 10. getWineAbove_func10
+
+delimiter $$
+drop procedure if exists getWineAbove;
+create procedure getWineAbove(IN x INT) 
+begin 
+      select W.wid, W.wname, W.yname, W.price
+      from Wine W
+      where W.wid in
+      		(select R.wid
+      		 from Review R
+      		 group by R.wid
+      		 having avg(R.star) >= x
+      		);
+end $$
+delimiter ;
+
+
+-- Start list of added procedures
+-- used with userHome page
+
+delimiter $$
+drop procedure if exists getUserInfoWithCount;
+create procedure getUserInfoWithCount(IN usersName VARCHAR(255)) 
+begin 
+      select U.username, U.uname, U.email, count(R.wid) as rcount, count(CASE R.favlist WHEN 'Yes' THEN 1 END) as fcount
+      from User U, Review R
+      where R.username = usersName and U.username = usersName
+      group by R.username;
+end $$
+delimiter ;
+
+-- getTopTenWinesUnder10
+
+delimiter $$
+drop procedure if exists getTopTenWinesUnder10;
+create procedure getTopTenWinesUnder10() 
+begin 
+    select wid, wname, yname, score, price
+from wine
+where price < 10
+order by score desc
+limit 10; 
+ 
+end $$
+delimiter ;
+
+-- getVarietyInfo
+
+delimiter $$
+drop procedure if exists getVarietyInfo;
+create procedure getVarietyInfo(IN vName VARCHAR(255)) 
+begin 
+      select *
+      from Variety
+      where vname = vName;
+end $$
+delimiter ;
+
+-- getWineryInfo
+
+delimiter $$
+drop procedure if exists getWineryInfo;
+create procedure getWineryInfo(IN wineryName VARCHAR(255)) 
+begin 
+      select y.yname, y.location, avg(w.score) as avg_score
+	  from Winery y, Wine w
+	  where y.yname=wineryName AND w.yname=wineryName;
+end $$
+delimiter ;
+
+
+delimiter $$
+drop procedure if exists getReviewInfo;
+create procedure getReviewInfo(IN usersName VARCHAR(255), wineID VARCHAR(255)) 
+begin 
+      select W.wid, R.username, W.wname, R.comment, R.star, W.price, W.score, W.yname, W.vname, R.favlist, R.date
+      from Review R, Wine W
+      where R.wid = wineID and R.username = usersName and W.wid = wineID;
+end $$
+delimiter ;
+
